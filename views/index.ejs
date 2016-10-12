@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图书管理小系统</title>
+  <style>
+    table{
+      border-collapse:collapse;
+      margin: 0 auto;
+
+    }
+    th, td{
+      border: 1px solid darkcyan;
+      padding: 10px 15px;
+      text-align: center;
+    }
+    #box{
+      width: 800px;
+      height: auto;
+      margin: 10px auto;
+      text-align: center;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <h2>图书管理小系统</h2>
+    <table>
+      <tr>
+        <th>书名</th>
+        <th>作者</th>
+        <th>阅读人数</th>
+        <td>操作</td>
+        <td>操作</td>
+      </tr>
+      <% for(var i = 0; i < book.length; i++){ %>
+      <tr>
+        <td><%= book[i].name%></td>
+        <td><%= book[i].author%></td>
+        <td><%= book[i].readNumber%></td>
+        <td><a href="/edit?id=<%= book[i]._id%>">修改</a></td>
+        <td><a href="javascript:void(0)" class="delete" data-id="<%= book[i]._id%>">删除</a></td>
+      </tr>
+      <%}%>
+    </table>
+    <h3><a href="/add">添加</a></h3>
+  </div>
+</body>
+<script src="jquery-1.10.1.min.js">
+
+</script>
+<script>
+  $(function(){
+    var aDelete = $('.delete');
+    aDelete.on('click', function(){
+      var id = $(this).attr('data-id');
+      var that = $(this);
+      $.post('/dodelete', {id: id}, function(result){
+        if(result.status){
+          that.parents('tr').remove();
+        }
+      })
+    })
+  })
+</script>
+</html>

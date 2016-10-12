@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>添加图书</title>
+  <style>
+    #box{
+      width: 400px;
+      margin: 10px auto;
+      text-align: center;
+    }
+    #box input[type="submit"] {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <h1>修改图书</h1>
+    <form action="/doedit" method="post" enctype="multipart/form-data">
+      <p>书名: <input type="text" name="name" value="<%=name%>"></p>
+      <p>作者: <input type="text" name="author" value="<%=author%>"></p>
+      <p>阅读人数: <input type="number" name="readNumber" value="<%= readNumber%>"></p>
+      <input type="hidden" name="id" value="<%=id%>">
+      <p><input type="submit"></p>
+    </form>
+  </div>
+</body>
+</html>
